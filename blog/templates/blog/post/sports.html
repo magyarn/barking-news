@@ -1,0 +1,35 @@
+{% extends "blog/base.html" %}
+
+{% block title %} Sports | {% endblock title %}
+
+{% block content %}
+  <div class="nbt-wrapper">
+    {% if tag %}
+      <h2>Posts tagged with "{{ tag.name }}"</h2>
+    {% endif %}
+    {{ featured }}
+    <section class="nbt-barking-news-grid">
+      {% for post in posts %}
+        <article class="nbt-feature-{{ forloop.counter }}">
+          {% if post.featured_image %}
+          <img class="nbt-post__featured-image" src="{{ post.featured_image.url }}" alt=""/>
+          {% endif %}
+          <h2>
+            <a href="{{ post.get_absolute_url }}">
+              {{ post.title }}
+            </a>
+          </h2>
+          <p class="date">
+            Published {{ post.publish }} by {{ post.author }}
+          </p>
+          {{ post.body|truncatewords:30|linebreaks }}
+        </article>
+      {% endfor %}
+      <aside class="nbt-side">
+        <p>Doggo ipsum stop it fren very hand that feed shibe stop it fren big ol porgo, corgo dat tungg tho. Thicc very jealous pupper many pats you are doing me a frighten heckin angery woofer shibe, heckin good boys pats doge. What a nice floof pupper wow very biscit stop it fren clouds you are doin me a concern, clouds noodle horse wow such tempt heckin angery woofer. Heckin blep most angery pupper I have ever seen such treat vvv puggorino ur givin me a spook yapper bork heckin good boys and girls, very taste wow extremely cuuuuuute heck borkdrive mlem blop sub woofer heck.</p>
+        <p>Doggo ipsum stop it fren very hand that feed shibe stop it fren big ol porgo, corgo dat tungg tho. Thicc very jealous pupper many pats you are doing me a frighten heckin angery woofer shibe, heckin good boys pats doge. What a nice floof pupper wow very biscit stop it fren clouds you are doin me a concern, clouds noodle horse wow such tempt heckin angery woofer. Heckin blep most angery pupper I have ever seen such treat vvv puggorino ur givin me a spook yapper bork heckin good boys and girls, very taste wow extremely cuuuuuute heck borkdrive mlem blop sub woofer heck.</p>
+        <p>Doggo ipsum stop it fren very hand that feed shibe stop it fren big ol porgo, corgo dat tungg tho. Thicc very jealous pupper many pats you are doing me a frighten heckin angery woofer shibe, heckin good boys pats doge. What a nice floof pupper wow very biscit stop it fren clouds you are doin me a concern, clouds noodle horse wow such tempt heckin angery woofer. Heckin blep most angery pupper I have ever seen such treat vvv puggorino ur givin me a spook yapper bork heckin good boys and girls, very taste wow extremely cuuuuuute heck borkdrive mlem blop sub woofer heck.</p>
+      </aside>
+    </section>
+  </div>
+{% endblock %}

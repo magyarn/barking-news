@@ -1,0 +1,37 @@
+.nbt-header {
+  .flex(center, center, wrap);
+}
+
+.nbt-post__featured-image {
+  width: 100%;
+  height: 300px;
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+  transition: .3s ease-out;
+  &:hover {
+    filter: none;
+  }
+}
+
+.nbt-barking-news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: "feature-1 feature-1 side"
+                       "feature-2 feature-3 side";
+}
+
+.nbt-feature-1 {
+  grid-area: feature-1
+}
+
+.nbt-feature-2 {
+  grid-area: feature-2
+}
+
+.nbt-feature-3 {
+  grid-area: feature-3
+}
+
+.nbt-side {
+  grid-area: side
+}

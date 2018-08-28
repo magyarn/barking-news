@@ -1,0 +1,39 @@
+{% extends "blog/base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+  <div class="nbt-wrapper">
+    {% if tag %}
+      <h2>Posts tagged with "{{ tag.name }}"</h2>
+    {% endif %}
+    {{ featured }}
+    <section class="nbt-barking-news-grid">
+      {% for post in posts %}
+        <article class="nbt-feature-{{ forloop.counter }}">
+          {% if post.featured_image %}
+          <img class="nbt-post__featured-image" src="{{ post.featured_image.url }}" alt=""/>
+          {% endif %}
+          <h2>
+            <a href="{{ post.get_absolute_url }}">
+              {{ post.title }}
+            </a>
+          </h2>
+          <p class="date">
+            Published {{ post.publish }} by {{ post.author }}
+          </p>
+          {{ post.body|truncatewords:30|linebreaks }}
+        </article>
+      {% endfor %}
+      {% if aside %}
+      <aside class="nbt-side">
+        <h3>{{ aside.title }}</h3>
+        <p>{{ aside.publish }} by {{ aside.author }}</p>
+        {{ aside.body|truncatewords:300|linebreaks}}
+        <h3>Latest Posts</h3>
+      </aside>
+      {% endif %}
+    </section>
+    {% include "../pagination.html" with page=posts %}
+  </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+.nbt-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.nbt-nav__list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.nbt-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}

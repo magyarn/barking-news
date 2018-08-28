@@ -1,0 +1,27 @@
+// files for third party code. At the top to be the most easily overridden:
+// @import '00-vendor';
+
+//  preprocessors, fonts, variables (doesn’t generate any style output)
+@import '01-settings/normalize';
+
+// mixins, functions (doesn’t generate any style output)
+@import '02-tools/colors';
+@import '02-tools/mixins';
+
+// bare HTML elements (H1, a, p, etc…)
+@import '03-elements/elements';
+
+
+// resets or normalizing files, and other site-wide styles
+@import '04-generic/structure';
+
+// majority of code goes here to style specific UI components
+@import '05-components/navigation';
+@import '05-components/images';
+
+// page specific styles, mostly grid specifications
+@import '06-pages/home';
+@import '06-pages/detail';
+
+// utilities and helper classes that have the most authority (show/hide, color helpers, etc…)
+// @import '07-helpers';
