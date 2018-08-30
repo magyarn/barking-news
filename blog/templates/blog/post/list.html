@@ -21,10 +21,16 @@
                   {{ post.title }}
                 </a>
               </h2>
-              <p class="date">
-                Published {{ post.publish }} by {{ post.author }}
+              <p class="nbt-masonry-tile__date">
+                {{ post.publish|date:"F d, Y" }}
+              </p>
+              <p class="nbt-text--small">
+                {{ post.author }}
               </p>
               {{ post.body|truncatewords:30|linebreaks }}
+              <p class="nbt-masonry-tile__comment-count">
+                {{ post.comments.count }} comment{{ post.comments.count|pluralize }}
+              </p>
             </div>
           </div>
         </div>

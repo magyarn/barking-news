@@ -1,4 +1,22 @@
 .nbt-masonry-tile {
   border-radius: @card-radius;
   background-color: @grey-light;
+  position: relative;
+}
+
+.nbt-masonry-tile__date {
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+  color: @white;
+  background-color: rgba(0, 0, 0, .5);
+  padding: .5rem;
+  border-radius: @card-radius;
+  font-size: .85rem;
+  margin: 0;
+}
+
+.nbt-masonry-tile__comment-count {
+  margin-bottom: 0;
+  .text-small();
 }
