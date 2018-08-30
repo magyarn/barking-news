@@ -1,11 +1,26 @@
 .similar-posts-list {
   list-style: none;
   padding-left: 0;
-  .flex('flex-start', 'center', 'wrap');
+  .flex(flex-start, center, wrap);
 }
 
 .similar-posts-list__item {
+  flex: 0 0 32%;
   &:not(:first-of-type) {
     margin-left: 1rem;
   }
 }
+
+.nbt-detail-grid {
+  display: grid;
+  grid-template-columns: 75% 1fr;
+  grid-gap: 1.5rem;
+  grid-template-areas: "body sidebar"
+                       "similar similar"
+                       "comments comments";
+}
+
+.nbt-detail__body { grid-area: body; }
+.nbt-detail__sidebar { grid-area: sidebar; }
+.nbt-detail__similar { grid-area: similar; }
+.nbt-detail__comments { grid-area: comments; }
