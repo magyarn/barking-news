@@ -36,11 +36,10 @@ def barking_news (request, tag_slug=None):
         # If page is out of range deliver last page of results
         posts = paginator.page(paginator.num_pages)
 
-    aside = get_object_or_404(Post, priority='aside')
+    # aside = get_object_or_404(Post, priority='aside')
 
     return render(request, 'blog/post/list.html', {'page': page,
                                                    'posts': posts,
-                                                   'aside': aside,
                                                    'tag': tag})
 
 def sports (request):
