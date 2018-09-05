@@ -20,3 +20,38 @@
   margin-bottom: 0;
   .text-small();
 }
+
+.nbt-card--horizontal {
+  max-width: 100%;
+  border-radius: @card-radius;
+  box-shadow: @box-shadow;
+  .flex(flex-start, flex-start, wrap);
+}
+
+.nbt-card__image-wrapper {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  position: relative;
+  border-radius: @card-radius 0 0 @card-radius;
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.image-wrapper__publish-date {
+  position: absolute;
+  top: -.25rem;
+  left: .5rem;
+  background: rgba(0, 0, 0, .5);
+  padding: .5rem;
+  color: @white;
+  font-size: .8rem;
+}
+
+.nbt-card__text-wrapper {
+  padding: 1rem;
+  width: calc(100% - 200px);
+  border-top: 1px solid @grey-light;
+}
