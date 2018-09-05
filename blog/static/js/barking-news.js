@@ -21,3 +21,21 @@ function resizeAllGridItems () {
 
 window.onload = resizeAllGridItems();
 window.addEventListener("resize", resizeAllGridItems);
+
+// jquery code
+$(document).ready(function () {
+
+  $searchBtn = $('[data-action=toggleSearch]')[0];
+  $searchForm = $('[data-target=searchForm]')[0];
+  $searchIcon = $('[data-target=searchIcon]')[0];
+  $searchClose = $('[data-target=searchClose]')[0];
+  $searchInput = $('[data-target=searchInput]')[0];
+
+  $($searchBtn).click(function () {
+    $($searchForm).toggleClass('hidden');
+    $($searchBtn).toggleClass('btn-outline--none').toggleClass('btn-search--close').toggleClass('btn-circle');
+    $($searchIcon).toggleClass('hidden');
+    $($searchClose).toggleClass('hidden');
+    $($searchInput).focus();
+  })
+})

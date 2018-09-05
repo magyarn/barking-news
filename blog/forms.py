@@ -14,4 +14,5 @@ class CommentForm(forms.ModelForm):
         fields = ('name', 'email', 'body')
 
 class SearchForm(forms.Form):
-    query = forms.CharField()
+    # Not sure below is the best way to be adding classes and attributes to Django Forms...
+    query = forms.CharField(widget=forms.TextInput(attrs={'class': "nav-search__input", 'data-target': "searchInput"}))

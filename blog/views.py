@@ -17,6 +17,7 @@ class PostListView(ListView):
     template_name = 'blog/post/list.html' #If we don't set a default template, ListView will use blog/post_list.html.
 
 def barking_news (request, tag_slug=None):
+    form = SearchForm()
     object_list = Post.published.all()
     tag = None
 
@@ -40,7 +41,8 @@ def barking_news (request, tag_slug=None):
 
     return render(request, 'blog/post/list.html', {'page': page,
                                                    'posts': posts,
-                                                   'tag': tag})
+                                                   'tag': tag,
+                                                   'form': form})
 
 def sports (request):
     posts = Post.published.all().filter(genre='sports')

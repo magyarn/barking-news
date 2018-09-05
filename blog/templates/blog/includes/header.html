@@ -1,8 +1,25 @@
 <div class="nbt-wrapper nbt-header-wrapper">
   <h1 class="nbt-header">New Bark Times</h1>
-  <button class="btn btn-circle btn-outline btn-search">
-    <svg class="nbt-icon" width="19" height="19" viewBox="0 0 19 19" xmlns="http://www.w3.org/2000/svg">
+  <form action="{% url 'blog:post_search' %}" method="get" class="nav-search hidden" data-target="searchForm">
+    {% for field in form %}
+      <div>
+        {{ field.errors }}
+        <p class="screen-reader-only">{{ field.label_tag }} </p>
+        {{ field }}
+      </div>
+    {% endfor %}
+    <button type="submit" class="nav-search__submit">
+      <svg width="19" height="19" viewBox="0 0 19 19" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12.857 8.143c0-2.757-2.243-5-5-5s-5 2.243-5 5 2.243 5 5 5 5-2.243 5-5zm5.714 9.286c0 .78-.647 1.428-1.428 1.428a1.4 1.4 0 0 1-1.005-.424l-3.828-3.817A7.839 7.839 0 0 1 7.857 16 7.854 7.854 0 0 1 0 8.143 7.854 7.854 0 0 1 7.857.286a7.854 7.854 0 0 1 7.857 7.857c0 1.585-.48 3.147-1.384 4.453l3.829 3.828c.256.257.412.625.412 1.005z" fill="#FFF" fill-rule="evenodd"/>
+      </svg>
+    </button>
+  </form>
+  <button class="btn btn-circle btn-outline btn-search" data-action="toggleSearch">
+    <svg data-target="searchIcon" width="19" height="19" viewBox="0 0 19 19" xmlns="http://www.w3.org/2000/svg">
       <path d="M12.857 8.143c0-2.757-2.243-5-5-5s-5 2.243-5 5 2.243 5 5 5 5-2.243 5-5zm5.714 9.286c0 .78-.647 1.428-1.428 1.428a1.4 1.4 0 0 1-1.005-.424l-3.828-3.817A7.839 7.839 0 0 1 7.857 16 7.854 7.854 0 0 1 0 8.143 7.854 7.854 0 0 1 7.857.286a7.854 7.854 0 0 1 7.857 7.857c0 1.585-.48 3.147-1.384 4.453l3.829 3.828c.256.257.412.625.412 1.005z" fill="#000" fill-rule="evenodd"/>
+    </svg>
+    <svg data-target="searchClose" class="hidden" width="11" height="11" viewBox="0 0 11 11" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10.227 9.332c.182.2.273.438.273.711a.927.927 0 0 1-.273.684.927.927 0 0 1-.684.273c-.273 0-.51-.091-.711-.273L5.25 7.145l-3.582 3.582a.988.988 0 0 1-1.367 0A.885.885 0 0 1 0 10.043c0-.273.1-.51.3-.711L3.856 5.75.301 2.168C.1 1.968 0 1.73 0 1.457 0 1.184.1.956.3.773a.988.988 0 0 1 1.368 0L5.25 4.355 8.832.773C9.032.591 9.27.5 9.543.5c.273 0 .501.091.684.273.182.183.273.41.273.684 0 .273-.091.51-.273.711L6.645 5.75l3.582 3.582z" fill="#989898" fill-rule="evenodd"/>
     </svg>
   </button>
   <nav class="nbt-nav">
