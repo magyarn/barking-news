@@ -1,5 +1,5 @@
 <div class="nbt-wrapper nbt-header-wrapper">
-  <h1 class="nbt-header">New Bark Times</h1>
+  <h1 class="nbt-header">Code Journal</h1>
   <form action="{% url 'blog:post_search' %}" method="get" class="nav-search hidden" data-target="searchForm">
     {% for field in form %}
       <div>
@@ -24,11 +24,12 @@
   </button>
   <nav class="nbt-nav">
     <ul class="nbt-nav__list">
-      <li class="nbt-nav__list-item"><a class="nbt-nav__list-item__link" href="{% url "blog:barking_news" %}">Barking News</a></li>
-      <li class="nbt-nav__list-item"><a class="nbt-nav__list-item__link" href="{% url "blog:sports" %}">Sports</a></li>
-      <li class="nbt-nav__list-item"><a class="nbt-nav__list-item__link" href="">Paw-litics</a></li>
-      <li class="nbt-nav__list-item"><a class="nbt-nav__list-item__link" href="">Weather</a></li>
-      <li class="nbt-nav__list-item"><a class="nbt-nav__list-item__link" href="">Re-tail</a></li>
+      <li class="nbt-nav__list-item"><a class="nbt-nav__list-item__link" href="{% url 'blog:barking_news' %}#all">All</a></li>
+      {% for genre in genres %}
+      <li class="nbt-nav__list-item">
+          <a href="{% url 'blog:barking_news' %}#{{genre.slug}}" class="nbt-nav__list-item__link">{{genre.title}}</a>
+      </li>
+      {% endfor %}
     </ul>
   </nav>
 </div>

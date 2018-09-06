@@ -1,6 +1,6 @@
 from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404
-from .models import Post, Comment
+from .models import Genre, Post, Comment
 from django.db.models import Count
 
 from django.views.generic import ListView
@@ -20,6 +20,7 @@ def barking_news (request, tag_slug=None):
     form = SearchForm()
     object_list = Post.published.all()
     tag = None
+    genre_list = Genre.objects.all()
 
     if tag_slug:
         tag = get_object_or_404(Tag, slug=tag_slug)
@@ -42,12 +43,12 @@ def barking_news (request, tag_slug=None):
     return render(request, 'blog/post/list.html', {'page': page,
                                                    'posts': posts,
                                                    'tag': tag,
-                                                   'form': form})
+                                                   'form': form,
+                                                   'genres': genre_list})
 
-def sports (request):
-    posts = Post.published.all().filter(genre='sports')
-
-    return render(request, 'blog/post/sports.html', {'posts': posts})
+def about (request):
+    genre_list = Genre.objects.all()
+    return render(request, 'blog/about.html', {'genres': genre_list})
 
 def post_detail(request, year, month, day, post):
     post = get_object_or_404(Post, slug=post,

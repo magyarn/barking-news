@@ -7,7 +7,6 @@ app_name = 'blog'
 urlpatterns = [
     # post views
     path('', views.barking_news, name='barking_news'),
-    path('sports/', views.sports, name='sports'),
     path('tag/<slug:tag_slug>/', views.barking_news, name='post_list_by_tag'),
     # path('', views.PostListView.as_view(), name='post_list'),
     path('<int:year>/<int:month>/<int:day>/<slug:post>/',
@@ -17,4 +16,5 @@ urlpatterns = [
          views.post_share, name='post_share'),
     path('blog/feed/', LatestPostsFeed(), name='post_feed'),
     path('search/', views.post_search, name='post_search'),
+    path('about/', views.about, name='about'),
 ]

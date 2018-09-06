@@ -11,6 +11,14 @@ class PublishedManager(models.Manager):
                     self).get_queryset()\
                         .filter(status='published')
 
+class Genre(models.Model):
+    title = models.CharField(max_length=250)
+    description = models.TextField()
+    slug = models.SlugField(max_length=250, default="")
+
+    def __str__ (self):
+        return self.title
+
 class Post(models.Model):
     STATUS_CHOICES = (
         ('draft', 'Draft'),
@@ -20,13 +28,6 @@ class Post(models.Model):
         ('featured', 'Featured'),
         ('standard', 'Standard'),
         ('aside', 'Aside'),
-    )
-    GENRE_CHOICES = (
-        ('barking_news', 'Barking News'),
-        ('sports', 'Sports'),
-        ('paw-litics', 'Paw-litics'),
-        ('weather', 'Weather'),
-        ('re-tail', 'Ret-tail'),
     )
     title = models.CharField(max_length=250)
     featured_image = models.ImageField(upload_to="post-images", blank=True)
@@ -45,9 +46,7 @@ class Post(models.Model):
     priority = models.CharField(max_length=10,
                              choices=PRIORITY_CHOICES,
                              default='standard')
-    genre = models.CharField(max_length=12,
-                             choices=GENRE_CHOICES,
-                             default='barking_news')
+    genre = models.ManyToManyField(Genre)
     objects = models.Manager()
     published = PublishedManager()
     tags = TaggableManager()
