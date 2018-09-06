@@ -10,7 +10,7 @@
     {{ featured }}
     <section class="nbt-barking-news-grid">
       {% for post in posts %}
-        <div class="item nbt-masonry-tile">
+        <div class="item nbt-masonry-tile" data-target="post" data-genres="{% for g in post.genre.all %}{{g.slug}}{% endfor %}">
           <div class="content">
             {% if post.featured_image %}
             <img class="nbt-post__featured-image post-image--tile" src="{{ post.featured_image.url }}" alt=""/>
@@ -25,7 +25,10 @@
                 {{ post.publish|date:"F d, Y" }}
               </p>
               <p class="nbt-text--small">
-                {{ post.author }}
+                {% for genre in post.genre.all %}
+                  {{ genre.title }}
+                  {%if not forloop.last%}, {%endif%}
+                {% endfor %}
               </p>
               {{ post.body|truncatewords:30|linebreaks }}
               <p class="nbt-masonry-tile__comment-count">
@@ -35,15 +38,29 @@
           </div>
         </div>
       {% endfor %}
-      <!-- {% if aside %}
-      <aside class="nbt-side">
-        <h3>{{ aside.title }}</h3>
-        <p>{{ aside.publish }} by {{ aside.author }}</p>
-        {{ aside.body|truncatewords:300|linebreaks}}
-        <h3>Latest Posts</h3>
-      </aside>
-      {% endif %} -->
     </section>
     {% include "../pagination.html" with page=posts %}
   </div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+  function filterPosts () {
+      hash = window.location.hash
+      let slug = hash.match(/[a-z]+-?[a-z]*/g)[0];
+      document.querySelectorAll('[data-target="post"]').forEach(post => {
+        post.classList.remove('hidden')
+
+        if (!post.getAttribute('data-genres').includes(slug) && slug !== 'all') {
+          post.classList.add('hidden')
+        }
+      });
+    }
+
+    window.addEventListener("hashchange", e => filterPosts());
+
+    $(document).ready( () => {
+      filterPosts()
+    })
+</script>
 {% endblock %}
